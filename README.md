@@ -16,7 +16,13 @@ sequenceDiagram
 
 ```
 
+## 開発準備
+
+- リポジトリを Clone
+
 ## 自己証明書の作成
+
+- Clone したリポジトリで作成する
 
 ```bash
 ## 1. 秘密鍵の生成（2048 ビット RSA）
@@ -39,9 +45,7 @@ rm salesforce.csr
 
 ```
 
-## python 設定
-
-### 仮想環境の作成
+## 仮想環境の作成
 
 ```bash
 
@@ -51,4 +55,16 @@ python3 -m venv venv
 
 pip install -r requirements.txt
 
+```
+
+## 実行
+
+```bash
+
+touch .env
+echo "CLIENT_ID=xxxxxxx" >> .env # コンシューマーキー
+echo "USER_NAME=xxxxxxx" >> .env # 認証を行ったユーザー
+echo "SF_LOGIN_URL=xxxxxxx" >> .env # ログインURL
+
+python main.py
 ```
