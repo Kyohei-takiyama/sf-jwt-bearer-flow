@@ -1,0 +1,4 @@
+.env
+salesforce.crt
+salesforce.pem
+venv
