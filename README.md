@@ -1,3 +1,22 @@
+```mermaid
+sequenceDiagram
+    participant Client as Pythonクライアント
+    participant JWT as JWT生成
+    participant SF as Salesforce OAuthエンドポイント
+    participant API as Salesforce API
+
+    Client->>JWT: 秘密鍵を用いてJWTペイロードを作成
+    JWT-->>Client: 署名済みJWTトークン
+    Client->>SF: JWTトークンをPOSTリクエストで送信
+    SF-->>Client: アクセストークン（Bearer Token）を返却
+    Client->>API: アクセストークンを使用してAPIリクエスト送信
+    API-->>Client: APIレスポンス
+
+```
+
+## 自己証明書の作成
+
+```bash
 ## 1. 秘密鍵の生成（2048 ビット RSA）
 
 openssl genrsa -out salesforce.pem 2048
@@ -16,7 +35,9 @@ openssl x509 -req -days 365 -signkey salesforce.pem -in salesforce.csr -out sale
 
 rm salesforce.csr
 
-## 5. python 設定
+```
+
+## python 設定
 
 ### 仮想環境の作成
 
